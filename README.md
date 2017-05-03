@@ -9,13 +9,15 @@ Plug 'leanprover/lean.vim'
 
 ## Auto-completion and error highlighting
 
-You can get auto-completion and error highlighting using separate plugins that implement the [Language Server Protocol](https://github.com/Microsoft/language-server-protocol).  First, install the Lean language server implementation.  
+[![asciicast](https://asciinema.org/a/6sllbd28ukojeahnaqra0kaqv.png)](https://asciinema.org/a/6sllbd28ukojeahnaqra0kaqv)
+
+You can even get auto-completion and error highlighting using separate plugins that implement the [Language Server Protocol](https://github.com/Microsoft/language-server-protocol).  First, install the Lean language server implementation.
 
 ```
 $ npm install -g lean-language-server
 ```
 
-For neovim, you can use the [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) plugin:
+For neovim, you can use the [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) plugin (be warned, it sometimes hangs):
 ```vim
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
