@@ -19,7 +19,7 @@ syn keyword leanKeyword example open axiom inductive instance class
 syn keyword leanKeyword with structure record universe universes alias help
 syn keyword leanKeyword reserve match infix infixl infixr notation postfix prefix
 syn keyword leanKeyword meta run_cmd do #exit
-syn keyword leanKeyword #eval #check end this suppose using namespace section
+syn keyword leanKeyword #eval #check end this suppose using namespace section #reduce
 syn keyword leanKeyword fields attribute local set_option extends include omit
 syn keyword leanKeyword calc have show suffices
 syn keyword leanKeyword by in at let if then else assume assert take obtain from
