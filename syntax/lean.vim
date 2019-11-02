@@ -3,7 +3,7 @@
 " Filename extensions:	*.lean
 " Maintainer:           Gabriel Ebner
 
-setlocal iskeyword=@,48-57,_,-,!,#,$,%
+setlocal iskeyword+=@,48-57,_,-,!,#,$,%
 
 " tabs = evil
 set expandtab
