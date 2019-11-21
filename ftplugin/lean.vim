@@ -1,6 +1,9 @@
-"Without this, abbreviations starting with backslash can have at most one
-"character
-setlocal iskeyword+=\
+" The backslash is needed here to allow the abbreviations
+setlocal iskeyword+=@,48-57,_,-,!,#,$,%,\
+
+" tabs = evil
+set expandtab
+
 
 " Add some common abbreviations
 inoreabbrev <buffer> \pi Π
