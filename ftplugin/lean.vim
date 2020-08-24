@@ -5,7 +5,7 @@ let b:did_ftplugin = 1
 
 setlocal iskeyword=@,48-57,_,-,!,#,$,%
 
-setlocal comments=:/-,:--
+setlocal comments=s0:/-,mb:\ ,ex:-/,:--
 setlocal commentstring=/-\ %s\ -/
 
 setlocal expandtab
