@@ -6,18 +6,15 @@
 syn case match
 
 " keywords
-syn keyword leanKeyword import prelude protected private noncomputable
-syn keyword leanKeyword def definition renaming hiding parameter parameters
-syn keyword leanKeyword begin conjecture constant constants lemma
-syn keyword leanKeyword variable variables theory #print theorem notation
-syn keyword leanKeyword example open axiom inductive instance class
-syn keyword leanKeyword with structure record universe universes alias help
-syn keyword leanKeyword reserve match infix infixl infixr notation postfix prefix
-syn keyword leanKeyword meta run_cmd do #exit
-syn keyword leanKeyword #eval #check end this suppose using namespace section #reduce
-syn keyword leanKeyword fields attribute local set_option extends include omit
-syn keyword leanKeyword calc have show suffices
-syn keyword leanKeyword by in at let if then else assume assert take obtain from
+
+syn keyword leanKeyword import renaming hiding namespace local private protected section include omit section protected export open attribute
+syn keyword leanKeyword lemma theorem def definition example axiom axioms constant constants universe universes inductive coinductive structure extends class instance noncomputable theory noncomputable mutual meta attribute parameter parameters variable variables reserve precedence postfix prefix notation infix infixl infixr begin by end set_option run_cmd
+syn keyword leanKeyword forall fun Pi from have show assume suffices let if else then in with calc match do
+syn keyword leanKeyword Sort Prop Type
+syn keyword leanKeyword #eval #check #reduce #exit #print #help
+
+" not present in pygments lexer
+syn keyword leanKeyword prelude this suppose using fields at
 
 syn match leanOp        ":"
 syn match leanOp        "="
