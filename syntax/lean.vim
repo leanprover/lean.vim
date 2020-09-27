@@ -39,10 +39,21 @@ syn region      leanEncl            matchgroup=leanDelim start="{"  end="}" cont
 
 syn keyword	leanTodo	containedin=leanComment TODO FIXME BUG FIX
 
-syn include @markdown syntax/markdown.vim
+syn include     @markdown       syntax/markdown.vim
 syn region      leanComment	start="/-" end="-/" contains=@markdown keepend
 syn match       leanComment     "--.*"
-unlet b:current_syntax
+
+" FIXME: almost certainly this isn't a good way to do this, but I forget
+"        (or never knew) how to move all the default highlight links from an
+"        included syntax from String to Comment, say, which is what we want to
+"        do here.
+highlight! link mkdString Comment
+highlight! link mkdListItemLine Comment
+highlight! link mkdNonListItemBlock Comment
+
+if exists('b:current_syntax')
+    unlet b:current_syntax
+endif
 
 command -nargs=+ HiLink hi def link <args>
 
