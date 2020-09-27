@@ -37,11 +37,12 @@ syn region      leanEncl            matchgroup=leanDelim start="{"  end="}" cont
 " FIXME(gabriel): distinguish backquotes in notations from names
 " syn region      leanNotation        start=+`+    end=+`+
 
-syn match       leanReference   containedin=leanComment "\(`\+\)[^`]\+\1"
 syn keyword	leanTodo	containedin=leanComment TODO FIXME BUG FIX
 
-syn region      leanComment	start="/-" end="-/"
+syn include @markdown syntax/markdown.vim
+syn region      leanComment	start="/-" end="-/" contains=@markdown keepend
 syn match       leanComment     "--.*"
+unlet b:current_syntax
 
 command -nargs=+ HiLink hi def link <args>
 
