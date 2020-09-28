@@ -11,3 +11,12 @@ setlocal commentstring=/-\ %s\ -/
 setlocal expandtab
 setlocal shiftwidth=2
 setlocal softtabstop=2
+
+" Matchit support
+if exists('loaded_matchit') && !exists('b:match_words')
+  let b:match_ignorecase = 0
+
+let b:match_words =
+      \  '\<begin\>:\<end\>' .
+      \ ',\<namespace \(.\{-}\)\>:\<end \1\>' .
+      \ ',\<end \(.\{-}\)\>:\<namespace \1\>'
