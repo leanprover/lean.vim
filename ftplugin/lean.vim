@@ -16,7 +16,7 @@ setlocal softtabstop=2
 if exists('loaded_matchit') && !exists('b:match_words')
   let b:match_ignorecase = 0
 
-let b:match_words =
-      \  '\<begin\>:\<end\>' .
-      \ ',\<namespace \(.\{-}\)\>:\<end \1\>' .
-      \ ',\<end \(.\{-}\)\>:\<namespace \1\>'
+  let b:match_words =
+        \  '\<begin\>:\<end$' .
+        \ ',\<\%(namespace\|section\)\s\+\(.\{-}\)\>:\<end\s\+\1\>'
+endif
