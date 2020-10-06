@@ -12,6 +12,11 @@ setlocal expandtab
 setlocal shiftwidth=2
 setlocal softtabstop=2
 
+function! lean#dotted2path(fname)
+  return substitute(a:fname, '\.', '/', 'g') . '.lean'
+endfunction
+setlocal includeexpr=lean#dotted2path(v:fname)
+
 " Matchit support
 if exists('loaded_matchit') && !exists('b:match_words')
   let b:match_ignorecase = 0
