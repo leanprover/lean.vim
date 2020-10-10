@@ -17,6 +17,8 @@ function! lean#dotted2path(fname)
 endfunction
 setlocal includeexpr=lean#dotted2path(v:fname)
 
+setlocal matchpairs+=⟨:⟩
+
 " Matchit support
 if exists('loaded_matchit') && !exists('b:match_words')
   let b:match_ignorecase = 0
