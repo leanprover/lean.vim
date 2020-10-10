@@ -17,15 +17,4 @@ You can even get auto-completion and error highlighting using separate plugins t
 $ npm install -g lean-language-server
 ```
 
-For neovim, you can use the [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) plugin (be warned, it sometimes hangs):
-```vim
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-    \ 'lean': ['lean-language-server', '--stdio'],
-    \ }
-
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-```
+An example setup [using coc.nvim is here](https://github.com/Julian/dotfiles/blob/bdd22d917561c9c115c4b41a54d5fc327249c230/.config/nvim/coc-settings.json#L3-L9).

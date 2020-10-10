@@ -3,26 +3,18 @@
 " Filename extensions:	*.lean
 " Maintainer:           Gabriel Ebner
 
-setlocal iskeyword=@,48-57,_,-,!,#,$,%
-
-" tabs = evil
-set expandtab
-
 syn case match
 
 " keywords
-syn keyword leanKeyword import prelude protected private noncomputable
-syn keyword leanKeyword def definition renaming hiding parameter parameters
-syn keyword leanKeyword begin conjecture constant constants lemma
-syn keyword leanKeyword variable variables theory #print theorem notation
-syn keyword leanKeyword example open axiom inductive instance class
-syn keyword leanKeyword with structure record universe universes alias help
-syn keyword leanKeyword reserve match infix infixl infixr notation postfix prefix
-syn keyword leanKeyword meta run_cmd do #exit
-syn keyword leanKeyword #eval #check end this suppose using namespace section #reduce
-syn keyword leanKeyword fields attribute local set_option extends include omit
-syn keyword leanKeyword calc have show suffices
-syn keyword leanKeyword by in at let if then else assume assert take obtain from
+
+syn keyword leanKeyword import renaming hiding namespace local private protected section include omit section protected export open attribute
+syn keyword leanKeyword lemma theorem def definition example axiom axioms constant constants universe universes inductive coinductive structure extends class instance noncomputable theory noncomputable mutual meta attribute parameter parameters variable variables reserve precedence postfix prefix notation infix infixl infixr begin by end set_option run_cmd
+syn keyword leanKeyword forall fun Pi from have show assume suffices let if else then in with calc match do
+syn keyword leanKeyword Sort Prop Type
+syn keyword leanKeyword #eval #check #reduce #exit #print #help
+
+" not present in pygments lexer
+syn keyword leanKeyword prelude this suppose using fields at
 
 syn match leanOp        ":"
 syn match leanOp        "="
@@ -47,11 +39,25 @@ syn region      leanEncl            matchgroup=leanDelim start="{"  end="}" cont
 
 syn keyword	leanTodo	containedin=leanComment TODO FIXME BUG FIX
 
-syn region      leanComment	start=+/-+ end=+-/+ contains=leanTodo
-syn match       leanComment     contains=leanTodo +--.*+
+syn include     @markdown       syntax/markdown.vim
+syn region      leanComment	start="/-" end="-/" contains=@markdown keepend
+syn match       leanComment     "--.*"
+
+" FIXME: almost certainly this isn't a good way to do this, but I forget
+"        (or never knew) how to move all the default highlight links from an
+"        included syntax from String to Comment, say, which is what we want to
+"        do here.
+highlight! link mkdString Comment
+highlight! link mkdListItemLine Comment
+highlight! link mkdNonListItemBlock Comment
+
+if exists('b:current_syntax')
+    unlet b:current_syntax
+endif
 
 command -nargs=+ HiLink hi def link <args>
 
+HiLink leanReference          Identifier
 HiLink leanTodo               Todo
 
 HiLink leanComment            Comment
