@@ -3,6 +3,8 @@ if exists('b:did_ftplugin')
 endif
 let b:did_ftplugin = 1
 
+set wildignore+=*.olean
+
 setlocal iskeyword=@,48-57,_,-,!,#,$,%
 
 setlocal comments=s0:/-,mb:\ ,ex:-/,:--
