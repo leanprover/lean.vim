@@ -34,6 +34,8 @@ syn region      leanEncl            matchgroup=leanDelim start="(" end=")" conta
 syn region      leanBracketEncl     matchgroup=leanDelim start="\[" end="\]" contains=ALLBUT,leanBrackErr keepend
 syn region      leanEncl            matchgroup=leanDelim start="{"  end="}" contains=ALLBUT,leanBraceErr keepend
 
+syn region      leanString          start=+"+ end=+"+ excludenl keepend
+
 " FIXME(gabriel): distinguish backquotes in notations from names
 " syn region      leanNotation        start=+`+    end=+`+
 
@@ -68,6 +70,7 @@ HiLink leanDelim              Keyword  " Delimiter is bad
 HiLink leanOp                 Keyword
 
 HiLink leanNotation           String
+HiLink leanString             String
 
 HiLink leanBraceError         Error
 HiLink leanParenError         Error
