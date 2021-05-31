@@ -71,7 +71,7 @@ syn match leanNumber '\<\d\d*\.\d*\>'
 syn match leanNameLiteral '``*[^ ()\]}][^ ()\[\]{}]*'
 
 syn include     @markdown       syntax/markdown.vim
-syn region      leanComment	start="/-" end="-/" contains=@markdown,@Spell,leanComment
+syn region      leanBlockComment start="/-" end="-/" contains=@markdown,@Spell,leanBlockComment
 syn match       leanComment     "--.*" contains=@Spell
 " fix up some highlighting links for markdown
 hi! link markdownCodeBlock Comment
@@ -85,6 +85,7 @@ hi def link leanReference         Identifier
 hi def link leanTodo              Todo
 
 hi def link leanComment           Comment
+hi def link leanBlockComment      leanComment
 
 hi def link leanKeyword           Keyword
 hi def link leanCommand           leanKeyword
