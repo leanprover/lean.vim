@@ -7,8 +7,6 @@ set wildignore+=*.olean
 
 setlocal iskeyword=@,48-57,_,-,!,#,$,%
 
-setlocal textwidth=100
-
 setlocal comments=s0:/-,mb:\ ,ex:-/,:--
 setlocal commentstring=/-\ %s\ -/
 
