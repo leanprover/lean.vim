@@ -7,73 +7,105 @@ syn case match
 
 " keywords
 
-syn keyword leanKeyword import renaming hiding namespace local private protected section include omit section protected export open attribute
-syn keyword leanKeyword lemma theorem def definition example axiom axioms constant constants universe universes inductive coinductive structure extends class instance noncomputable theory noncomputable mutual meta attribute parameter parameters variable variables reserve precedence postfix prefix notation infix infixl infixr begin by end set_option run_cmd
-syn keyword leanKeyword forall fun Pi from have show assume suffices let if else then in with calc match do
+syn keyword leanCommand prelude import include omit export open mutual
+syn keyword leanCommandPrefix local private protected scoped partial noncomputable meta unsafe
+syn keyword leanModifier renaming hiding where extends using with at rec deriving
+syn keyword leanCommand syntax elab macro_rules macro
+
+syn keyword leanCommand namespace section
+
+syn match leanFrenchQuote '«[^»]*»'
+
+syn match leanDeclarationName ' *[^:({\[[:space:]]*' contained
+syn match leanDeclarationName ' *«[^»]*»' contained
+syn keyword leanDeclaration lemma theorem def definition axiom axioms constant abbrev abbreviation
+        \ inductive coinductive structure class instance skipwhite nextgroup=leanDeclarationName
+
+syn keyword leanCommand universe universes example axioms constants
+syn keyword leanCommand meta parameter parameters variable variables
+syn keyword leanCommand reserve precedence postfix prefix notation infix infixl infixr
+
+syn keyword leanKeyword begin by end
+syn keyword leanKeyword forall fun Pi from have show assume suffices let if else then in with calc match do this
+syn keyword leanKeyword try catch finally for unless
 syn keyword leanKeyword Sort Prop Type
-syn keyword leanKeyword #eval #check #reduce #exit #print #help
+syn keyword leanCommand set_option run_cmd
+syn match leanCommand "#eval"
+syn match leanCommand "#check"
+syn match leanCommand "#print"
 
-" not present in pygments lexer
-syn keyword leanKeyword prelude this suppose using fields at
+syn keyword leanSorry sorry
+syn match leanSorry "#exit"
 
-syn match leanOp        ":"
-syn match leanOp        "="
+syn region leanAttributeArgs start='\[' end='\]' contained keepend contains=leanString,leanNumber
+syn match leanCommandPrefix '@' nextgroup=leanAttributeArgs
+syn keyword leanCommandPrefix attribute skipwhite nextgroup=leanAttributeArgs
 
 " constants
-syn keyword leanConstant "#" "@" "->" "∼" "↔" "/" "==" ":=" "<->" "/\\" "\\/" "∧" "∨" ">>=" ">>"
-syn keyword leanConstant ≠ < > ≤ ≥ ¬ <= >= ⁻¹ ⬝ ▸ + * - / λ
-syn keyword leanConstant → ∃ ∀ Π ←
+syn match leanOp "[:=><λ←→↔∀∃∧∨¬≤≥▸·+*-/;$|&%!×]"
 
 " delimiters
-
-syn match       leanBraceErr   "}"
-syn match       leanParenErr   ")"
-syn match       leanBrackErr   "\]"
-
-syn region      leanEncl            matchgroup=leanDelim start="(" end=")" contains=ALLBUT,leanParenErr keepend
-syn region      leanBracketEncl     matchgroup=leanDelim start="\[" end="\]" contains=ALLBUT,leanBrackErr keepend
-syn region      leanEncl            matchgroup=leanDelim start="{"  end="}" contains=ALLBUT,leanBraceErr keepend
+syn region leanEncl matchgroup=leanDelim start="#\[" end="\]" contains=TOP
+syn region leanEncl matchgroup=leanDelim start="(" end=")" contains=TOP
+syn region leanEncl matchgroup=leanDelim start="\[" end="\]" contains=TOP
+syn region leanEncl matchgroup=leanDelim start="{"  end="}" contains=TOP
+syn region leanEncl matchgroup=leanDelim start="⦃"  end="⦄" contains=TOP
+syn region leanEncl matchgroup=leanDelim start="⟨"  end="⟩" contains=TOP
 
 " FIXME(gabriel): distinguish backquotes in notations from names
 " syn region      leanNotation        start=+`+    end=+`+
 
-syn keyword	leanTodo	containedin=leanComment TODO FIXME BUG FIX
+syn keyword	leanTodo 	containedin=leanComment TODO FIXME BUG FIX
+
+syn match leanStringEscape '\\.' contained
+syn region leanString start='"' end='"' contains=leanInterpolation,leanStringEscape
+syn region leanInterpolation contained start='{' end='}' contains=TOP keepend
+
+syn match leanChar "'[^\\]'"
+syn match leanChar "'\\.'"
+
+syn match leanNumber '\<\d\d*\>'
+syn match leanNumber '\<0x[0-9a-fA-F]*\>'
+syn match leanNumber '\<\d\d*\.\d*\>'
+
+syn match leanNameLiteral '``*[^ ()\]}][^ ()\[\]{}]*'
 
 syn include     @markdown       syntax/markdown.vim
-syn region      leanComment	start="/-" end="-/" contains=@markdown keepend
-syn match       leanComment     "--.*"
-
-" FIXME: almost certainly this isn't a good way to do this, but I forget
-"        (or never knew) how to move all the default highlight links from an
-"        included syntax from String to Comment, say, which is what we want to
-"        do here.
-highlight! link mkdString Comment
-highlight! link mkdListItemLine Comment
-highlight! link mkdNonListItemBlock Comment
+syn region      leanComment	start="/-" end="-/" contains=@markdown,@Spell keepend
+syn match       leanComment     "--.*" contains=@Spell
+" fix up some highlighting links for markdown
+hi! link markdownCodeBlock Comment
+hi! link markdownError Comment
 
 if exists('b:current_syntax')
     unlet b:current_syntax
 endif
 
-command -nargs=+ HiLink hi def link <args>
+hi def link leanReference         Identifier
+hi def link leanTodo              Todo
 
-HiLink leanReference          Identifier
-HiLink leanTodo               Todo
+hi def link leanComment           Comment
 
-HiLink leanComment            Comment
+hi def link leanKeyword           Keyword
+hi def link leanCommand           leanKeyword
+hi def link leanCommandPrefix     PreProc
+hi def link leanAttributeArgs     leanCommandPrefix
+hi def link leanModifier          Label
 
-HiLink leanKeyword            Keyword
-HiLink leanConstant           Constant
-HiLink leanDelim              Keyword  " Delimiter is bad
-HiLink leanOp                 Keyword
+hi def link leanDeclaration       leanCommand
+hi def link leanDeclarationName   Function
 
-HiLink leanNotation           String
+hi def link leanDelim             Delimiter
+hi def link leanOp                Operator
 
-HiLink leanBraceError         Error
-HiLink leanParenError         Error
-HiLink leanBracketError       Error
+hi def link leanNotation          String
+hi def link leanString            String
+hi def link leanStringEscape      SpecialChar
+hi def link leanChar              Character
+hi def link leanNumber            Number
+hi def link leanNameLiteral       Identifier
 
-delcommand HiLink
+hi def link leanSorry             Error
 
 let b:current_syntax = "lean"
 
