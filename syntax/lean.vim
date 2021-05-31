@@ -27,7 +27,7 @@ syn keyword leanCommand reserve precedence postfix prefix notation infix infixl 
 
 syn keyword leanKeyword begin by end
 syn keyword leanKeyword forall fun Pi from have show assume suffices let if else then in with calc match do this
-syn keyword leanKeyword try catch finally for unless
+syn keyword leanKeyword try catch finally for unless return
 syn keyword leanKeyword Sort Prop Type
 syn keyword leanCommand set_option run_cmd
 syn match leanCommand "#eval"
