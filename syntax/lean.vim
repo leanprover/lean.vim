@@ -27,7 +27,7 @@ syn keyword leanCommand reserve precedence postfix prefix notation infix infixl 
 
 syn keyword leanKeyword begin by end
 syn keyword leanKeyword forall fun Pi from have show assume suffices let if else then in with calc match do this
-syn keyword leanKeyword try catch finally for unless return
+syn keyword leanKeyword try catch finally for unless return mut continue break
 syn keyword leanKeyword Sort Prop Type
 syn keyword leanCommand set_option run_cmd
 syn match leanCommand "#eval"
@@ -68,7 +68,7 @@ syn match leanNumber '\<\d\d*\>'
 syn match leanNumber '\<0x[0-9a-fA-F]*\>'
 syn match leanNumber '\<\d\d*\.\d*\>'
 
-syn match leanNameLiteral '``*[^ ()\]}][^ ()\[\]{}]*'
+syn match leanNameLiteral '``*[^ \[()\]}][^ ()\[\]{}]*'
 
 " syn include     @markdown       syntax/markdown.vim
 syn region      leanBlockComment start="/-" end="-/" contains=@markdown,@Spell,leanBlockComment
