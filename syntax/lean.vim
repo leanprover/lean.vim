@@ -108,6 +108,9 @@ hi def link leanNameLiteral       Identifier
 
 hi def link leanSorry             Error
 
+syn sync minlines=200
+syn sync maxlines=500
+
 let b:current_syntax = "lean"
 
 " vim: ts=8 sw=8
