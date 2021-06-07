@@ -37,7 +37,7 @@ syn match leanCommand "#print"
 syn keyword leanSorry sorry
 syn match leanSorry "#exit"
 
-syn region leanAttributeArgs start='\[' end='\]' contained keepend contains=leanString,leanNumber
+syn region leanAttributeArgs start='\[' end='\]' contained contains=leanString,leanNumber,leanAttributeArgs
 syn match leanCommandPrefix '@' nextgroup=leanAttributeArgs
 syn keyword leanCommandPrefix attribute skipwhite nextgroup=leanAttributeArgs
 
