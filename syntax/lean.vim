@@ -59,7 +59,10 @@ syn keyword	leanTodo 	containedin=leanComment TODO FIXME BUG FIX
 
 syn match leanStringEscape '\\.' contained
 syn region leanString start='"' end='"' contains=leanInterpolation,leanStringEscape
-syn region leanInterpolation contained start='{' end='}' contains=TOP keepend
+" HACK: Lean 4 supports both interpolated and non-interpolated strings
+" We want "{" to be highlighted as a string (because it often occurs in
+" syntax definitions).
+syn region leanInterpolation contained start='{\(\s*"\)\@!' end='}' contains=TOP keepend
 
 syn match leanChar "'[^\\]'"
 syn match leanChar "'\\.'"
