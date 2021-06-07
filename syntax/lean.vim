@@ -43,6 +43,7 @@ syn keyword leanCommandPrefix attribute skipwhite nextgroup=leanAttributeArgs
 
 " constants
 syn match leanOp "[:=><λ←→↔∀∃∧∨¬≤≥▸·+*-/;$|&%!×]"
+syn match leanOp '\([A-Za-z]\)\@<!?'
 
 " delimiters
 syn region leanEncl matchgroup=leanDelim start="#\[" end="\]" contains=TOP
