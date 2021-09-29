@@ -1,3 +1,9 @@
+# Please use [lean.nvim](https://github.com/Julian/lean.nvim/) instead!
+
+This plugin is no longer maintained.
+
+<!--
+
 # vim syntax support for Lean
 
 This plugin provides basic syntax highlighting for [Lean](https://leanprover.github.io/) files.
@@ -14,3 +20,5 @@ For auto-completion, error highlighting,
 and other LSP goodies,
 please install the [lean.nvim](https://github.com/Julian/lean.nvim/)
 plugin.
+
+-->
